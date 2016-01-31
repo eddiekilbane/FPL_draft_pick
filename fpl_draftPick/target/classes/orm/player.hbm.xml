@@ -3,21 +3,27 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
     <class name="com.fpl.draftPick.players.model.Player" table="player" catalog="fplDraftPickDB">
-        <id name="id" type="string">
-            <column name="username" length="45" />
-            <generator class="assigned" />
+        <id name="id" type="int">
+            <column name="fpl_id"/>
         </id>
-        <property name="password" type="string">
-            <column name="password" length="60" not-null="true" />
+        <property name="firstName" type="string">
+            <column name="first_name" length="60" not-null="true" />
         </property>
-        <property name="enabled" type="boolean">
-            <column name="enabled" not-null="true" />
+        <property name="secondName" type="string">
+            <column name="second_name" length="60" not-null="true" />
         </property>
-        <set name="userRole" table="user_roles" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="username" length="45" not-null="true" />
-            </key>
-            <one-to-many class="com.fpl.draftPick.users.model.UserRole" />
-        </set>
+      	<property name="totalPoints" type="int">
+            <column name="total_points"/>
+        </property>
+        <property name="averagePoints" type="int">
+            <column name="points_per_game"/>
+        </property>
+        <property name="club" type="int">
+            <column name="club_id"/>
+        </property>
+        <property name="playerType" type="int">
+            <column name="type"/>
+        </property>
+        
     </class>
 </hibernate-mapping>

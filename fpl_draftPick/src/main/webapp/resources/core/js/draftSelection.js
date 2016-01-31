@@ -30,14 +30,14 @@ var DraftSelection = (function() {
 	// Reveal public methods
 	return {
 		initDraftSelection : function() {
-			
-			
-
+			 $.ajax({
+		            url : ctx + '/fpldraftpick/getAllPlayers',
+		            success : function(data) {
+		                console.log(data);
+		            }
+		        });
 		},
 
-
-
-		}
-	};
+	}
 
 })();

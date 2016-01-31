@@ -27,6 +27,7 @@
 			<list>
 				<value>orm/user.hbm.xml</value>
 				<value>orm/userRole.hbm.xml</value>
+				<value>orm/player.hbm.xml</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">
@@ -43,10 +44,18 @@
 	<bean id="userDao" class="com.fpl.draftPick.users.dao.UserDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
+	<bean id="playerDao" class="com.fpl.draftPick.players.dao.PlayerDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
 
 	<bean id="myUserDetailsService" 
                 class="com.fpl.draftPick.users.service.MyUserDetailsService">
 		<property name="userDao" ref="userDao" />
+	</bean>
+	
+	<bean id="playerSevice" 
+                class="com.fpl.draftPick.users.service.PlayerServiceImpl">
+		<property name="playerDao" ref="playerDao" />
 	</bean>
 
 	<!-- MUST have transaction manager, using aop and aspects  -->
