@@ -28,6 +28,8 @@
 				<value>orm/user.hbm.xml</value>
 				<value>orm/userRole.hbm.xml</value>
 				<value>orm/player.hbm.xml</value>
+				<value>orm/club.hbm.xml</value>
+				<value>orm/playerType.hbm.xml</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">

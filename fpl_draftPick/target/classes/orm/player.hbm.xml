@@ -2,28 +2,30 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-    <class name="com.fpl.draftPick.players.model.Player" table="player" catalog="fplDraftPickDB">
-        <id name="id" type="int">
-            <column name="fpl_id"/>
-        </id>
-        <property name="firstName" type="string">
-            <column name="first_name" length="60" not-null="true" />
-        </property>
-        <property name="secondName" type="string">
-            <column name="second_name" length="60" not-null="true" />
-        </property>
-      	<property name="totalPoints" type="int">
-            <column name="total_points"/>
-        </property>
-        <property name="averagePoints" type="int">
-            <column name="points_per_game"/>
-        </property>
-        <property name="club" type="int">
-            <column name="club_id"/>
-        </property>
-        <property name="playerType" type="int">
-            <column name="type"/>
-        </property>
-        
-    </class>
+	<class name="com.fpl.draftPick.players.model.Player" table="player"
+		catalog="fplDraftPickDB">
+		<id name="id" type="int">
+			<column name="fpl_id" />
+		</id>
+		<property name="firstName" type="string">
+			<column name="first_name" length="60" not-null="true" />
+		</property>
+		<property name="secondName" type="string">
+			<column name="second_name" length="60" not-null="true" />
+		</property>
+		<property name="totalPoints" type="int">
+			<column name="total_points" />
+		</property>
+		<property name="averagePoints" type="int">
+			<column name="points_per_game" />
+		</property>
+		<many-to-one name="club" column="club_id"
+			class="com.fpl.draftPick.model.Club" lazy="false" />
+		<many-to-one name="playerType" column="type"
+			class="com.fpl.draftPick.model.PlayerType" lazy="false" />
+	</class>
+
+
+
+
 </hibernate-mapping>

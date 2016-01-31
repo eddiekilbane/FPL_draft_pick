@@ -1,5 +1,8 @@
 package com.fpl.draftPick.players.model;
 
+import com.fpl.draftPick.model.Club;
+import com.fpl.draftPick.model.PlayerType;
+
 public class Player {
 	
 	private int id;
@@ -7,8 +10,8 @@ public class Player {
 	private String secondName;
 	private Integer totalPoints;
 	private Integer averagePoints;
-	private Integer club;
-	private Integer playerType;
+	private Club club;
+	private PlayerType playerType;
 	
 	public String getFirstName() {
 		return firstName;
@@ -34,16 +37,16 @@ public class Player {
 	public void setAveragePoints(Integer averagePoints) {
 		this.averagePoints = averagePoints;
 	}
-	public Integer getClub() {
+	public Club getClub() {
 		return club;
 	}
-	public void setClub(Integer club) {
+	public void setClub(Club club) {
 		this.club = club;
 	}
-	public Integer getPlayerType() {
+	public PlayerType getPlayerType() {
 		return playerType;
 	}
-	public void setPlayerType(Integer playerType) {
+	public void setPlayerType(PlayerType playerType) {
 		this.playerType = playerType;
 	}
 	public int getId() {

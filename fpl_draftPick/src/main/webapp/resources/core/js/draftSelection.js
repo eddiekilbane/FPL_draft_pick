@@ -6,38 +6,41 @@
  */
 
 var DraftSelection = (function() {
-	// Properties
-	///////////////////////////
 
-	//var x = 0;
-
-	// Private Methods
-	///////////////////////////
-
-	/*
-	 * An example private method.
-	 */
-	//var privateMethod = function () {};
-	// Public Methods
-	///////////////////////////
-	/*
-	 * An example public method.
-	 */
-	//var publicMethod = function () {};
-	// Init
-	///////////////////////////
-	//x = 10 + x;
-	// Reveal public methods
 	return {
 		initDraftSelection : function() {
-			 $.ajax({
-		            url : ctx + '/fpldraftpick/getAllPlayers',
-		            success : function(data) {
-		                console.log(data);
-		            }
-		        });
+
+			$('#playerDatatable').DataTable({
+				"ajax" : {
+					url : ctx + '/fpldraftpick/getAllPlayers',
+					error : function() {
+						console.log("Error with Ajax call")
+					},
+					complete : function() {
+						console.log("COMPLETE");
+					}
+				},
+				"columns" : [ {
+					"title" : "First",
+					"data" : "firstName"
+				}, {
+					"title" : "Second",
+					"data" : "secondName"
+				}, {
+					"title" : "Total Points",
+					"data" : "totalPoints"
+				}, {
+					"title" : "Club",
+					"data" : "club"
+				}, {
+					"title" : "Position",
+					"data" : "playerType"
+				} ],
+				"processing" : true,
+				"deferRender" : true,
+				"paging" : true,
+				"info" : true
+			});
 		},
-
 	}
-
 })();

@@ -8,15 +8,26 @@
 
 <spring:url value="/resources/core/css/bootstrap.min.css"
 	var="bootstrapCss" />
+
+
+
 <spring:url value="/resources/core/js/jquery.1.10.2.min.js"
 	var="jqueryJs" />
 <spring:url value="/resources/core/js/draftSelection.js"
 	var="draftSelectionJs" />
 
+
+
+
+
 <link href="${mainCss}" rel="stylesheet" />
 <link href="${bootstrapCss}" rel="stylesheet" />
 <script src="${jqueryJs}"></script>
-<script  src="${draftSelectionJs}"></script>
+<script src="${draftSelectionJs}"></script>
+
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.10/css/jquery.dataTables.css">
+  
+<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.10/js/jquery.dataTables.js"></script>
 
 <script type="text/javascript">
 var ctx = "${pageContext.request.contextPath}";
@@ -42,10 +53,10 @@ $(document).ready(function(){
 			</div>
 			<div class="collapse navbar-collapse" id="myNavbar">
 				<ul class="nav navbar-nav">
-					<li class="active"><a href="#">Home</a></li>
+					<li id="home"><a href="#">Home</a></li>
 					<li id="users_team"><a href="#">Your Team</a></li>
 					<li id="searchfplplayers"><a href="#">Player Search</a></li>
-					<li id="draftSelection"><a href="#">Draft Selection</a></li>
+					<li class="active" id="draftSelection"><a href="#">Draft Selection</a></li>
 
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
@@ -77,32 +88,16 @@ $(document).ready(function(){
 
 	<div id="draftPlayerTableHolder" class="container-fluid text-center">
 		<div class="row content">
-			<!-- <div class="col-sm-2 sidenav">
-				<h4>
-					<a href="#">Premier League Table</a>
-				</h4>
-				<p>Arsenal - 24pts</p>
-				<p>Man City - 20pts</p>
-				<p>Liverpool - 16pts</p>
-				<h4>
-					<a href="#">Top 10 Players</a>
-				</h4>
-				<p>Aguero (S) - 24pts</p>
-				<p>Vardy (S) - 20pts</p>
-				<p>Sanchez (M) - 16pts</p>
-			</div> -->
-			<div class="col-sm-6 text-left">
-				<h1>Player selection table</h1>
-				<p>datatable to go here  </p>
-				<hr>
-				<h3>List of player already selected</h3>
-				<p>datable to go here</p>
+			<div class="col-sm-8 text-left">
+				<div id="playerTable-holder">
+					<table id="playerDatatable" class="stripe row-border hover compact"></table>
+				</div>
 			</div>
 			<div class="col-sm-4 sidenav">
 				<div class="well">
 					<p>Players Turn Indicator</p>
 				</div>
-				
+
 			</div>
 		</div>
 	</div>
