@@ -8,6 +8,8 @@
 
 <spring:url value="/resources/core/css/bootstrap.min.css"
 	var="bootstrapCss" />
+	<spring:url value="/resources/core/css/flipclock.css"
+	var="flipClockCss" />
 
 
 
@@ -15,15 +17,15 @@
 	var="jqueryJs" />
 <spring:url value="/resources/core/js/draftSelection.js"
 	var="draftSelectionJs" />
-
-
-
-
+<spring:url value="/resources/core/js/flipclock.min.js"
+	var="flipClockJs" />
 
 <link href="${mainCss}" rel="stylesheet" />
 <link href="${bootstrapCss}" rel="stylesheet" />
+<link href="${flipClockCss}" rel="stylesheet" />
 <script src="${jqueryJs}"></script>
 <script src="${draftSelectionJs}"></script>
+<script src="${flipClockJs}"></script>
 
 <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.10/css/jquery.dataTables.css">
   
@@ -86,6 +88,29 @@ $(document).ready(function(){
 	</nav>
 
 
+<div id="draftPlayerIdentifierHolder" class="container-fluid text-center">
+		<div class="row content">
+			<div class="col-sm-4 text-left">
+					<div class="flipClock">
+					</div>
+			</div>
+			<div class="col-sm-4 text-center">
+					<div class="draft order">
+					<h2>Player draft order</h2>
+					<h4>-> Eddie</h4>
+					<p>Sean</p>
+					<p>Joe</p>
+					</div>
+			</div>
+			<div class="col-sm-4">
+
+				<button id="startDraftPickBtn" type="button" class="btn btn-primary">Start Draft Pick</button>
+			</div>
+		
+			
+		</div>
+	</div>
+
 	<div id="draftPlayerTableHolder" class="container-fluid text-center">
 		<div class="row content">
 			<div class="col-sm-8 text-left">
@@ -95,7 +120,7 @@ $(document).ready(function(){
 			</div>
 			<div class="col-sm-4 sidenav">
 				<div class="well">
-					<p>Players Turn Indicator</p>
+					<p>Players Scorecard</p>
 				</div>
 
 			</div>

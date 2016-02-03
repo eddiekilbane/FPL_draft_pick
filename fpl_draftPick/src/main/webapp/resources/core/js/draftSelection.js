@@ -6,9 +6,24 @@
  */
 
 var DraftSelection = (function() {
+	
+	_draftClock : null
 
 	return {
 		initDraftSelection : function() {
+			
+			
+			DraftSelection.initButtonListeners();
+			
+			DraftSelection._draftClock = $('.flipClock').FlipClock(120,{
+				clockFace : 'MinuteCounter',
+				countdown : true,
+				autoStart : false
+				
+			});
+			
+			$('.flipClock').hide();
+
 
 			$('#playerDatatable').DataTable({
 				"ajax" : {
@@ -35,12 +50,34 @@ var DraftSelection = (function() {
 				}, {
 					"title" : "Position",
 					"data" : "playerType"
+				}, {
+					"title" : "Selection",
+					"data" : "club"
 				} ],
+				"columnDefs"  :[{
+					"target" : [5],
+					"data": null,
+		            "defaultContent": "<button>Click!</button>"
+				}],
+				
 				"processing" : true,
 				"deferRender" : true,
 				"paging" : true,
 				"info" : true
 			});
 		},
+		initButtonListeners : function(){
+			
+			$('#startDraftPickBtn').click(function(){
+				$('.flipClock').show();
+				DraftSelection._draftClock.start();
+			});
+			
+		},
+		
+		renderPlayerSelectButton : function(){
+			console.log("renderPlayerSelectButton");
+			return '<p>Button</p>'
+		}
 	}
 })();
