@@ -99,7 +99,7 @@ public class MainController {
 
 	}
 	
-	// /draftSelection
+	// /draftSelection mapping
 	@RequestMapping(value="/draftSelection", method = RequestMethod.GET)
 	public ModelAndView draftSelection(){
 		
