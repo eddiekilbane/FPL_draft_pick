@@ -12,10 +12,10 @@ public class PlayerDTO {
 	private String averagePoints;
 	private String club;
 	private String playerType;
-	
+	private int playerId;
 	
 	public PlayerDTO(Player player){
-		
+		this.playerId = player.getId();
 		this.firstName = player.getFirstName();
 		this.secondName = player.getSecondName();
 		this.totalPoints = player.getTotalPoints().toString();
@@ -87,6 +87,16 @@ public class PlayerDTO {
 
 	public void setPlayerType(String playerType) {
 		this.playerType = playerType;
+	}
+
+
+	public int getPlayerId() {
+		return playerId;
+	}
+
+
+	public void setPlayerId(int playerId) {
+		this.playerId = playerId;
 	}
 	
 

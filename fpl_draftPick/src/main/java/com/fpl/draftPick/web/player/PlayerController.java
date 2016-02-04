@@ -14,7 +14,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.fpl.draftPick.dto.PlayerDTO;
+import com.fpl.draftPick.dto.UserDTO;
 import com.fpl.draftPick.players.model.Player;
+import com.fpl.draftPick.users.model.User;
+import com.fpl.draftPick.users.service.MyUserDetailsService;
 import com.fpl.draftPick.users.service.PlayersService;
 
 
@@ -47,4 +50,25 @@ public class PlayerController {
 		
 	}
 	
+
+	@RequestMapping(value = "/fpldraftpick/getAllDraftPickUsers", method=RequestMethod.GET)
+	public @ResponseBody Map<String, Object> allFPLDraftPickUsers(){
+
+		List<User> allDraftPickUsers = playerSevice.getAllDraftPickUsers();
+		
+		List<UserDTO> allDraftPickUsersDTOList = new ArrayList<UserDTO>();
+		
+		for(User user : allDraftPickUsers){
+			UserDTO userDTO = new UserDTO(user);
+			allDraftPickUsersDTOList.add(userDTO);
+		}
+		
+		Map<String, Object> tableData = new HashMap<String, Object>();
+		tableData.put("aaData",allDraftPickUsersDTOList);
+		tableData.put("sEcho","false");
+		tableData.put("iTotalRecords",allDraftPickUsersDTOList.size());
+		tableData.put("iTotalDisplayRecords",allDraftPickUsersDTOList.size());
+		
+		return tableData;	
+	}
 }

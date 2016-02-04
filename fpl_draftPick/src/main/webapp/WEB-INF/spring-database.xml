@@ -58,6 +58,7 @@
 	<bean id="playerSevice" 
                 class="com.fpl.draftPick.users.service.PlayerServiceImpl">
 		<property name="playerDao" ref="playerDao" />
+		<property name="userDao" ref="userDao" />
 	</bean>
 
 	<!-- MUST have transaction manager, using aop and aspects  -->

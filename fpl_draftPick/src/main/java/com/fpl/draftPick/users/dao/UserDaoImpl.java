@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.hibernate.SessionFactory;
 
+import com.fpl.draftPick.players.model.Player;
 import com.fpl.draftPick.users.model.User;
 
 public class UserDaoImpl implements UserDao {
@@ -27,6 +28,21 @@ public class UserDaoImpl implements UserDao {
 		}
 
 	}
+	
+	@SuppressWarnings("unchecked")
+	public List<User> getDraftpickUsers() {
+		
+		List<User> users = new ArrayList<User>();
+
+		users = getSessionFactory().getCurrentSession()
+				.createCriteria(User.class).list();
+		
+		if ( users.size() > 0 ) {
+			return users;
+		} else { 
+			return null;
+		}
+	}
 
 	public SessionFactory getSessionFactory() {
 		return sessionFactory;
@@ -35,5 +51,7 @@ public class UserDaoImpl implements UserDao {
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
+
+	
 
 }

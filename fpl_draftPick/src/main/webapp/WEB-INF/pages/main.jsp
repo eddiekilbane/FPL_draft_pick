@@ -35,6 +35,7 @@
 					<li id="users_team"><a href="#">Your Team</a></li>
 					<li id="searchfplplayers"><a href="#">Player Search</a></li>
 					<li ><a href="draftSelection">Draft Selection</a></li>
+					<li ><a href="admin">Draft Admin</a></li>
 
 				</ul>
 				<ul class="nav navbar-nav navbar-right">

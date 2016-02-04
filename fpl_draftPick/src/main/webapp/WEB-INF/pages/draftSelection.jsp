@@ -58,7 +58,8 @@ $(document).ready(function(){
 					<li id="home"><a href="#">Home</a></li>
 					<li id="users_team"><a href="#">Your Team</a></li>
 					<li id="searchfplplayers"><a href="#">Player Search</a></li>
-					<li class="active" id="draftSelection"><a href="#">Draft Selection</a></li>
+					<li class="active" id="draftSelection"><a href="draftSelection">Draft Selection</a></li>
+					<li ><a href="admin">Draft Admin</a></li>
 
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
@@ -104,7 +105,7 @@ $(document).ready(function(){
 			</div>
 			<div class="col-sm-4">
 
-				<button id="startDraftPickBtn" type="button" class="btn btn-primary">Start Draft Pick</button>
+				<button id="startDraftPickBtn" type="button" class="btn btn-success">Start Draft Round: #1</button>
 			</div>
 		
 			
