@@ -7,13 +7,31 @@
 
 var DraftSelection = (function() {
 
-	_draftClock: null
+	_draftClock: null;
+	_draftRound : 1;
+	_draftUserPick : 0;
+	_draftUserOrder : [];
+
+	var displayUsernameSelction = function(){
+		console.log(_draftUserOrder[0].draftOrder);
+		
+		for(i=0; i< _draftUserOrder.length; i++){
+			
+			if(_draftUserOrder[i].draftOrder === _draftUserPick){
+				$('#usernameSelection').html(_draftUserOrder[i].username + "'s pick");
+			}
+			
+		}
+		_draftUserPick += 1;
+		if(_draftUserPick > _draftUserOrder.length){
+			_draftUserPick = 1;
+		}
+		
+	};
 
 	return {
 		initDraftSelection : function() {
-
-			DraftSelection.initButtonListeners();
-
+			
 			DraftSelection._draftClock = $('.flipClock').FlipClock(120, {
 				clockFace : 'MinuteCounter',
 				countdown : true,
@@ -22,8 +40,27 @@ var DraftSelection = (function() {
 			});
 
 			$('.flipClock').hide();
+			
+			$.ajax({
+				type : 'POST',
+				url : ctx + '/fpldraftpick/getAllDraftPickUsers1',
+				/*contentType : 'application/json; charset=utf-8',
+			    data: JSON.stringify(users),*/
+				error : function(error) {
+					console.log("Error with Ajax call");
+					console.log(error);
+				},
+				success : function(response) {
+					console.log("Successfully updated Draft Order");
+					_draftUserPick = 1;
+					_draftUserOrder = response;
+					displayUsernameSelction();
+					
 
-			$('#userDraftOrderTable').DataTable(
+				}
+			});
+
+			/*$('#userDraftOrderTable').DataTable(
 					{
 						"ajax" : {
 							type : 'POST',
@@ -47,7 +84,7 @@ var DraftSelection = (function() {
 						"deferRender" : false,
 						"paging" : false,
 						"info" : false
-					});
+					});*/
 
 			$('#playerDatatable').DataTable(
 					{
@@ -59,6 +96,7 @@ var DraftSelection = (function() {
 							},
 							complete : function() {
 								console.log("COMPLETE");
+								DraftSelection.initButtonListeners();
 							}
 						},
 						"columns" : [ {
@@ -93,20 +131,30 @@ var DraftSelection = (function() {
 						"paging" : true,
 						"info" : true
 					});
+			
+			
+			
 		},
+		
 		initButtonListeners : function() {
 
 			$('#startDraftPickBtn').click(function() {
 				$('.flipClock').show();
 				DraftSelection._draftClock.start();
 			});
-
 		},
 
 		renderPlayerSelectButton : function(data, type, row) {
 			return '<button id="'
 					+ row.playerId
-					+ ' " type="button" class="btn btn-primary">Select</button>'
+					+ ' " type="button" class="btn btn-primary"'
+					+' onClick="DraftSelection.selectPlayer(this);">Select</button>'
+		},
+		
+		selectPlayer : function(player){
+			console.log(player);
+			displayUsernameSelction();
+			//TODO Ajax call to assign player to current user
 		}
 	}
 })();

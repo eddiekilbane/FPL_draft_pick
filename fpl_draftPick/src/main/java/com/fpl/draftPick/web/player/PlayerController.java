@@ -77,11 +77,23 @@ public class PlayerController {
 		return tableData;	
 	}
 	
+	@RequestMapping(value = "/fpldraftpick/getAllDraftPickUsers1", method=RequestMethod.POST, produces="application/json")
+	public @ResponseBody List<UserDTO> allFPLDraftPickUsers1(){
+
+		List<User> allDraftPickUsers = playerSevice.getAllDraftPickUsers();
+		
+		List<UserDTO> allDraftPickUsersDTOList = new ArrayList<UserDTO>();
+		for(User user : allDraftPickUsers){
+			UserDTO userDTO = new UserDTO(user);
+			allDraftPickUsersDTOList.add(userDTO);
+		}
+		return allDraftPickUsersDTOList;	
+	}
+	
 	@RequestMapping(value = "/fpldraftpick/updateDraftPickOrder", method=RequestMethod.POST,consumes = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody void updateDraftPickOrder(@RequestBody User[] users){
 		
 		for(User user : users){
-			System.out.println(user.getUsername() + " , ORDER: " + user.getDraftOrder());
 			playerSevice.updateUser(user);
 			
 		}	

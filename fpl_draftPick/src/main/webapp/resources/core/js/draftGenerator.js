@@ -14,12 +14,6 @@ var DraftGenerator = (function() {
 
 			// Disable button
 
-			//TODO Get number of users, assign random number from 1:n where n is 
-			// the total number of users.
-
-			console.log(users);
-			// Ajax update with data
-
 			var arr = []
 			while (arr.length < users.length) {
 				var randomnumber = Math.ceil(Math.random() * users.length);
@@ -34,11 +28,8 @@ var DraftGenerator = (function() {
 					arr[arr.length] = randomnumber;
 					users[i].draftOrder = randomnumber;
 			}
-			console.log(arr);
-			console.log(users);
-			console.log(JSON.stringify(users));
+
 			// Ajax call to update users
-			
 			$.ajax({
 				type : 'POST',
 				url : ctx + '/fpldraftpick/updateDraftPickOrder',
@@ -54,9 +45,6 @@ var DraftGenerator = (function() {
 
 				}
 			});
-			// Reload Table
-			
-
 		});
 
 	};
