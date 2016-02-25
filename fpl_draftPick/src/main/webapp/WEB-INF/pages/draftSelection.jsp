@@ -8,8 +8,7 @@
 
 <spring:url value="/resources/core/css/bootstrap.min.css"
 	var="bootstrapCss" />
-	<spring:url value="/resources/core/css/flipclock.css"
-	var="flipClockCss" />
+<spring:url value="/resources/core/css/flipclock.css" var="flipClockCss" />
 
 
 
@@ -27,9 +26,11 @@
 <script src="${draftSelectionJs}"></script>
 <script src="${flipClockJs}"></script>
 
-<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.10/css/jquery.dataTables.css">
-  
-<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.10/js/jquery.dataTables.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="//cdn.datatables.net/1.10.10/css/jquery.dataTables.css">
+
+<script type="text/javascript" charset="utf8"
+	src="//cdn.datatables.net/1.10.10/js/jquery.dataTables.js"></script>
 
 <script type="text/javascript">
 var ctx = "${pageContext.request.contextPath}";
@@ -58,8 +59,9 @@ $(document).ready(function(){
 					<li id="home"><a href="#">Home</a></li>
 					<li id="users_team"><a href="#">Your Team</a></li>
 					<li id="searchfplplayers"><a href="#">Player Search</a></li>
-					<li class="active" id="draftSelection"><a href="draftSelection">Draft Selection</a></li>
-					<li ><a href="admin">Draft Admin</a></li>
+					<li class="active" id="draftSelection"><a
+						href="draftSelection">Draft Selection</a></li>
+					<li><a href="admin">Draft Admin</a></li>
 
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
@@ -89,26 +91,28 @@ $(document).ready(function(){
 	</nav>
 
 
-<div id="draftPlayerIdentifierHolder" class="container-fluid text-center">
+	<div id="draftPlayerIdentifierHolder"
+		class="container-fluid text-center">
 		<div class="row content">
 			<div class="col-sm-4 text-left">
-					<div class="flipClock">
-					</div>
+				<div class="flipClock"></div>
 			</div>
 			<div class="col-sm-4 text-center">
-					<div class="draft order">
-					<h2>Player draft order</h2>
-					<h4>-> Eddie</h4>
-					<p>Sean</p>
-					<p>Joe</p>
-					</div>
+
+				<div id="userDraftOrder" class="table-responsive">
+					<table id="userDraftOrderTable" class="table table-hover666">
+
+					</table>
+				</div>
+
 			</div>
 			<div class="col-sm-4">
 
-				<button id="startDraftPickBtn" type="button" class="btn btn-success">Start Draft Round: #1</button>
+				<button id="startDraftPickBtn" type="button" class="btn btn-success">Start
+					Draft Round: #1</button>
 			</div>
-		
-			
+
+
 		</div>
 	</div>
 

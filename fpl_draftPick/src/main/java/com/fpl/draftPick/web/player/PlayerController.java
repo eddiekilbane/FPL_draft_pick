@@ -7,18 +7,23 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.fpl.draftPick.dto.PlayerDTO;
 import com.fpl.draftPick.dto.UserDTO;
 import com.fpl.draftPick.players.model.Player;
+import com.fpl.draftPick.players.service.PlayersService;
 import com.fpl.draftPick.users.model.User;
 import com.fpl.draftPick.users.service.MyUserDetailsService;
-import com.fpl.draftPick.users.service.PlayersService;
 
 
 @Controller
@@ -27,7 +32,7 @@ public class PlayerController {
 	@Autowired
 	private PlayersService playerSevice;
 	
-	@RequestMapping(value = "/fpldraftpick/getAllPlayers", method=RequestMethod.GET)
+	@RequestMapping(value = "/fpldraftpick/getAllPlayers", method=RequestMethod.POST, produces="application/json")
 	public @ResponseBody Map<String, Object> allFPLPlayers(){
 		
 		List<Player> allPlayers = playerSevice.getAllPlayers();
@@ -51,7 +56,7 @@ public class PlayerController {
 	}
 	
 
-	@RequestMapping(value = "/fpldraftpick/getAllDraftPickUsers", method=RequestMethod.GET)
+	@RequestMapping(value = "/fpldraftpick/getAllDraftPickUsers", method=RequestMethod.POST, produces="application/json")
 	public @ResponseBody Map<String, Object> allFPLDraftPickUsers(){
 
 		List<User> allDraftPickUsers = playerSevice.getAllDraftPickUsers();
@@ -70,5 +75,15 @@ public class PlayerController {
 		tableData.put("iTotalDisplayRecords",allDraftPickUsersDTOList.size());
 		
 		return tableData;	
+	}
+	
+	@RequestMapping(value = "/fpldraftpick/updateDraftPickOrder", method=RequestMethod.POST,consumes = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody void updateDraftPickOrder(@RequestBody User[] users){
+		
+		for(User user : users){
+			System.out.println(user.getUsername() + " , ORDER: " + user.getDraftOrder());
+			playerSevice.updateUser(user);
+			
+		}	
 	}
 }

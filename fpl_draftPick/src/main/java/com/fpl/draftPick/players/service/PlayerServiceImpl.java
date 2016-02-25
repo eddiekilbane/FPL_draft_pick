@@ -1,4 +1,4 @@
-package com.fpl.draftPick.users.service;
+package com.fpl.draftPick.players.service;
 
 import java.util.List;
 
@@ -33,6 +33,11 @@ public class PlayerServiceImpl implements PlayersService {
 	@Transactional
 	public List<User> getAllDraftPickUsers() {
 		return userDao.getDraftpickUsers();
+	}
+
+	@Override
+	public boolean updateUser(User user) {
+		return userDao.updateUser(user);
 	}
 	
 	

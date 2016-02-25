@@ -9,5 +9,7 @@ public interface UserDao {
 	User findByUserName(String username);
 	
 	List<User> getDraftpickUsers();
+	
+	boolean updateUser(User user);
 
 }

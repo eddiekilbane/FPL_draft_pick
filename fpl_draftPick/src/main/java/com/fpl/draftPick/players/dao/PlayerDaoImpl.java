@@ -34,5 +34,4 @@ public class PlayerDaoImpl implements PlayerDao {
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
-
 }
