@@ -1,4 +1,4 @@
-package com.fpl.draftPick.users.service;
+package com.fpl.draftPick.service.users;
 
 import java.util.ArrayList;
 import java.util.HashSet;

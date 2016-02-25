@@ -51,12 +51,12 @@
 	</bean>
 
 	<bean id="myUserDetailsService" 
-                class="com.fpl.draftPick.users.service.MyUserDetailsService">
+                class="com.fpl.draftPick.service.users.MyUserDetailsService">
 		<property name="userDao" ref="userDao" />
 	</bean>
 	
 	<bean id="playerSevice" 
-                class="com.fpl.draftPick.users.service.PlayerServiceImpl">
+                class="com.fpl.draftPick.service.players.PlayerServiceImpl">
 		<property name="playerDao" ref="playerDao" />
 		<property name="userDao" ref="userDao" />
 	</bean>
@@ -77,7 +77,7 @@
 
 	<aop:config>
 	    <aop:pointcut id="userServicePointCut"
-		expression="execution(* com.fpl.draftPick.users.service.*Service.*(..))" />
+		expression="execution(* com.fpl.draftPick.service.**.*Service.*(..))" />
 	    <aop:advisor advice-ref="txAdvice" pointcut-ref="userServicePointCut" />
 	</aop:config>
 

@@ -21,9 +21,9 @@ import org.springframework.web.servlet.ModelAndView;
 import com.fpl.draftPick.dto.PlayerDTO;
 import com.fpl.draftPick.dto.UserDTO;
 import com.fpl.draftPick.players.model.Player;
-import com.fpl.draftPick.players.service.PlayersService;
+import com.fpl.draftPick.service.players.PlayersService;
+import com.fpl.draftPick.service.users.MyUserDetailsService;
 import com.fpl.draftPick.users.model.User;
-import com.fpl.draftPick.users.service.MyUserDetailsService;
 
 
 @Controller

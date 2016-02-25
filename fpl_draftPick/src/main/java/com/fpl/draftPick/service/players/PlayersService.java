@@ -1,4 +1,4 @@
-package com.fpl.draftPick.players.service;
+package com.fpl.draftPick.service.players;
 
 import java.util.List;
 
