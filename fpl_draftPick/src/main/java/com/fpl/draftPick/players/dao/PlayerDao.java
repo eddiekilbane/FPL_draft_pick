@@ -10,5 +10,6 @@ public interface PlayerDao {
 	List<Player> getAllPlayers();
 	
 	Player getPlayerByUserName();
+	
 
 }

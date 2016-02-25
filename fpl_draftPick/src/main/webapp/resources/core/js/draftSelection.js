@@ -23,9 +23,36 @@ var DraftSelection = (function() {
 
 			$('.flipClock').hide();
 
+			$('#userDraftOrderTable').DataTable(
+					{
+						"ajax" : {
+							type : 'POST',
+							url : ctx + '/fpldraftpick/getAllDraftPickUsers',
+							error : function() {
+								console.log("Error with Ajax call")
+							},
+							complete : function() {
+								console.log("COMPLETE");
+							}
+						},
+						"columns" : [ {
+							"title" : "Name",
+							"data" : "username"
+						}, {
+							"title" : "Order",
+							"data" : "draftOrder"
+						} ],
+						"filter" : false,
+						"processing" : false,
+						"deferRender" : false,
+						"paging" : false,
+						"info" : false
+					});
+
 			$('#playerDatatable').DataTable(
 					{
 						"ajax" : {
+							type : 'POST',
 							url : ctx + '/fpldraftpick/getAllPlayers',
 							error : function() {
 								console.log("Error with Ajax call")

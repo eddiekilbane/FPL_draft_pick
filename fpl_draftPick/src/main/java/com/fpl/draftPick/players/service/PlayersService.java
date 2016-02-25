@@ -1,4 +1,4 @@
-package com.fpl.draftPick.users.service;
+package com.fpl.draftPick.players.service;
 
 import java.util.List;
 
@@ -10,6 +10,8 @@ public interface PlayersService {
 	public List<Player> getAllPlayers();
 	
 	public List<User> getAllDraftPickUsers();
+	
+	boolean updateUser(User user);
 	
 	
 
