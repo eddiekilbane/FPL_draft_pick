@@ -3,9 +3,7 @@ package com.fpl.draftPick.users.dao;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.hibernate.Query;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 
 import com.fpl.draftPick.users.model.User;
 
@@ -51,7 +49,7 @@ public class UserDaoImpl implements UserDao {
 		String hql = "UPDATE User set draft_order =" + user.getDraftOrder()
 				+ " WHERE username ='" + user.getUsername()+"'";
 
-		int result = getSessionFactory().getCurrentSession().createQuery(hql).executeUpdate();
+		getSessionFactory().getCurrentSession().createQuery(hql).executeUpdate();
 		
 		return true;
 	}
