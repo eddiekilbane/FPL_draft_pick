@@ -14,6 +14,15 @@ var DraftGenerator = (function() {
 
 			// Disable button
 
+<<<<<<< HEAD
+=======
+			//TODO Get number of users, assign random number from 1:n where n is 
+			// the total number of users.
+
+			console.log(users);
+			// Ajax update with data
+
+>>>>>>> 16f9b20ade78188a45b7ba5ed37f7f15846fdc0b
 			var arr = []
 			while (arr.length < users.length) {
 				var randomnumber = Math.ceil(Math.random() * users.length);
@@ -28,8 +37,16 @@ var DraftGenerator = (function() {
 					arr[arr.length] = randomnumber;
 					users[i].draftOrder = randomnumber;
 			}
+<<<<<<< HEAD
 
 			// Ajax call to update users
+=======
+			console.log(arr);
+			console.log(users);
+			console.log(JSON.stringify(users));
+			// Ajax call to update users
+			
+>>>>>>> 16f9b20ade78188a45b7ba5ed37f7f15846fdc0b
 			$.ajax({
 				type : 'POST',
 				url : ctx + '/fpldraftpick/updateDraftPickOrder',
@@ -45,6 +62,12 @@ var DraftGenerator = (function() {
 
 				}
 			});
+<<<<<<< HEAD
+=======
+			// Reload Table
+			
+
+>>>>>>> 16f9b20ade78188a45b7ba5ed37f7f15846fdc0b
 		});
 
 	};
