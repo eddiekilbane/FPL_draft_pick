@@ -21,15 +21,9 @@ import org.springframework.web.servlet.ModelAndView;
 import com.fpl.draftPick.dto.PlayerDTO;
 import com.fpl.draftPick.dto.UserDTO;
 import com.fpl.draftPick.players.model.Player;
-<<<<<<< HEAD
 import com.fpl.draftPick.service.players.PlayersService;
 import com.fpl.draftPick.service.users.MyUserDetailsService;
 import com.fpl.draftPick.users.model.User;
-=======
-import com.fpl.draftPick.players.service.PlayersService;
-import com.fpl.draftPick.users.model.User;
-import com.fpl.draftPick.users.service.MyUserDetailsService;
->>>>>>> 16f9b20ade78188a45b7ba5ed37f7f15846fdc0b
 
 
 @Controller
@@ -83,30 +77,31 @@ public class PlayerController {
 		return tableData;	
 	}
 	
-<<<<<<< HEAD
 	@RequestMapping(value = "/fpldraftpick/getAllDraftPickUsers1", method=RequestMethod.POST, produces="application/json")
 	public @ResponseBody List<UserDTO> allFPLDraftPickUsers1(){
 
 		List<User> allDraftPickUsers = playerSevice.getAllDraftPickUsers();
 		
 		List<UserDTO> allDraftPickUsersDTOList = new ArrayList<UserDTO>();
+		
 		for(User user : allDraftPickUsers){
 			UserDTO userDTO = new UserDTO(user);
 			allDraftPickUsersDTOList.add(userDTO);
 		}
+		
+		Map<String, Object> tableData = new HashMap<String, Object>();
+		tableData.put("aaData",allDraftPickUsersDTOList);
+		tableData.put("sEcho","false");
+		tableData.put("iTotalRecords",allDraftPickUsersDTOList.size());
+		tableData.put("iTotalDisplayRecords",allDraftPickUsersDTOList.size());
+		
 		return allDraftPickUsersDTOList;	
 	}
 	
-=======
->>>>>>> 16f9b20ade78188a45b7ba5ed37f7f15846fdc0b
 	@RequestMapping(value = "/fpldraftpick/updateDraftPickOrder", method=RequestMethod.POST,consumes = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody void updateDraftPickOrder(@RequestBody User[] users){
 		
 		for(User user : users){
-<<<<<<< HEAD
-=======
-			System.out.println(user.getUsername() + " , ORDER: " + user.getDraftOrder());
->>>>>>> 16f9b20ade78188a45b7ba5ed37f7f15846fdc0b
 			playerSevice.updateUser(user);
 			
 		}	

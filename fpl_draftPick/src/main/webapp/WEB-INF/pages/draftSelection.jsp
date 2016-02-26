@@ -93,43 +93,20 @@ $(document).ready(function(){
 
 	<div id="draftPlayerIdentifierHolder"
 		class="container-fluid text-center">
-<<<<<<< HEAD
 
 		<div class="container row content">
 			<div class="col-sm-6">
 				<h1 id="usernameSelection"></h1>
 			</div>
-			<div class="col-sm-4">
+			<div class="col-sm-3">
 
 				<div class="flipClock"></div>
 			</div>
-			<div class="col-sm-2">
+			<div class="col-sm-3">
 
 				<button id="startDraftPickBtn" type="button" class="btn btn-success">Start
 					Draft Round: #1</button>
 			</div>
-=======
-		<div class="row content">
-			<div class="col-sm-4 text-left">
-				<div class="flipClock"></div>
-			</div>
-			<div class="col-sm-4 text-center">
-
-				<div id="userDraftOrder" class="table-responsive">
-					<table id="userDraftOrderTable" class="table table-hover666">
-
-					</table>
-				</div>
-
-			</div>
-			<div class="col-sm-4">
-
-				<button id="startDraftPickBtn" type="button" class="btn btn-success">Start
-					Draft Round: #1</button>
-			</div>
-
-
->>>>>>> 16f9b20ade78188a45b7ba5ed37f7f15846fdc0b
 		</div>
 		<div class="container row content"></div>
 
