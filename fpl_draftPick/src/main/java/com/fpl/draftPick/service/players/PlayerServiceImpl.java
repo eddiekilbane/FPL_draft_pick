@@ -39,6 +39,18 @@ public class PlayerServiceImpl implements PlayersService {
 	public boolean updateUser(User user) {
 		return userDao.updateUser(user);
 	}
+
+	@Override
+	public boolean assignPlayerToUser(int userID, int playerID) {
+		
+		// Get player's object
+		// Check if player is not assigned
+		
+		// Get user's player selection
+		// Check player is not assigned to 
+
+		return false;
+	}
 	
 	
 

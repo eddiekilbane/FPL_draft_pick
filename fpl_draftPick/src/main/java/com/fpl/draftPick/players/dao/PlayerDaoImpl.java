@@ -26,6 +26,12 @@ public class PlayerDaoImpl implements PlayerDao {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	@Override
+	public Player getPlayer(int playerId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 	public SessionFactory getSessionFactory() {
 		return sessionFactory;

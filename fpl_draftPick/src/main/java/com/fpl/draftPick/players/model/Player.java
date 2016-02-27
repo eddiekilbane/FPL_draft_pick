@@ -12,6 +12,7 @@ public class Player {
 	private Integer averagePoints;
 	private Club club;
 	private PlayerType playerType;
+	private int selectedUserId;
 	
 	public String getFirstName() {
 		return firstName;
@@ -54,6 +55,12 @@ public class Player {
 	}
 	public void setId(int id) {
 		this.id = id;
+	}
+	public int getSelectedUserId() {
+		return selectedUserId;
+	}
+	public void setSelectedUserId(int selectedUserId) {
+		this.selectedUserId = selectedUserId;
 	}
 
 }

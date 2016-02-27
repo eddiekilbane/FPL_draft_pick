@@ -9,6 +9,8 @@ public interface PlayerDao {
 	
 	List<Player> getAllPlayers();
 	
+	Player getPlayer(int playerId);
+	
 	Player getPlayerByUserName();
 	
 

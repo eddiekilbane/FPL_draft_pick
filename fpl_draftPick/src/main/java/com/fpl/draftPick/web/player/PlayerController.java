@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fpl.draftPick.dto.PlayerDTO;
@@ -92,12 +93,26 @@ public class PlayerController {
 		return allDraftPickUsersDTOList;	
 	}
 	
+	/**
+	 * 
+	 */
 	@RequestMapping(value = "/fpldraftpick/updateDraftPickOrder", method=RequestMethod.POST,consumes = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody void updateDraftPickOrder(@RequestBody User[] users){
 		
 		for(User user : users){
 			playerSevice.updateUser(user);
-			
 		}	
+	}
+	
+	/**
+	 * 
+	 */
+	@RequestMapping(value = "/fpldraftpick/selectPlayerForUpdate", method=RequestMethod.POST)
+	public @ResponseBody void selectPlayerForUpdate(@RequestParam int userId, @RequestParam String playerID){
+		System.out.println("USER ID " + userId);
+		System.out.println("PLAYER ID " + playerID);
+		playerSevice.assignPlayerToUser(userId, Integer.parseInt(playerID));
+		
+		
 	}
 }

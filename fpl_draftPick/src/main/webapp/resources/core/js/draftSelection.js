@@ -11,6 +11,7 @@ var DraftSelection = (function() {
 	_draftRound : 1;
 	_draftUserPick : 0;
 	_draftUserOrder : [];
+	_currentUser : 0;
 
 	var displayUsernameSelction = function(){
 		console.log(_draftUserOrder[0].draftOrder);
@@ -19,6 +20,7 @@ var DraftSelection = (function() {
 			
 			if(_draftUserOrder[i].draftOrder === _draftUserPick){
 				$('#usernameSelection').html(_draftUserOrder[i].username + "'s pick");
+				_currentUser = _draftUserOrder[i].userId;
 			}
 			
 		}
@@ -174,13 +176,31 @@ var DraftSelection = (function() {
 			return '<button id="'
 					+ row.playerId
 					+ ' " type="button" class="btn btn-primary"'
-					+' onClick="DraftSelection.selectPlayer(this);">Select</button>'
+					+' onClick="DraftSelection.selectPlayer('+row.playerId+');">Select</button>'
 		},
 		
 		selectPlayer : function(player){
 			console.log(player);
-			displayUsernameSelction();
 			//TODO Ajax call to assign player to current user
+			$.ajax({
+				type : 'POST',
+				url : ctx + '/fpldraftpick/selectPlayerForUpdate',
+				data : {
+					userId : _currentUser,
+					playerID : player
+				},
+				error : function(error) {
+					console.log("Error with Ajax call");
+					console.log(error);
+				},
+				success : function(response) {
+					console.log("Successfully updated Users player selection");
+					displayUsernameSelction();
+					
+					
+
+				}
+			});			
 		}
 	}
 })();

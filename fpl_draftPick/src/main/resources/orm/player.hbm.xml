@@ -23,6 +23,9 @@
 			class="com.fpl.draftPick.model.Club" lazy="false" />
 		<many-to-one name="playerType" column="type"
 			class="com.fpl.draftPick.model.PlayerType" lazy="false" />
+		<property name="selectedUserId" type="int">
+			<column name="selected_user_id"></column>
+		</property>
 	</class>
 
 
