@@ -9,7 +9,7 @@ public interface PlayerDao {
 	
 	List<Player> getAllPlayers();
 	
-	Player getPlayer(int playerId);
+	Player getPlayer(String playerId);
 	
 	Player getPlayerByUserName();
 	

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.transaction.annotation.Transactional;
 
+import com.fpl.draftPick.model.UserSelection;
 import com.fpl.draftPick.players.dao.PlayerDao;
 import com.fpl.draftPick.players.model.Player;
 import com.fpl.draftPick.users.dao.UserDao;
@@ -14,6 +15,8 @@ public class PlayerServiceImpl implements PlayersService {
 	private PlayerDao playerDao;
 	
 	private UserDao userDao;
+	
+	private static int UNASSIGNED_ID = 0;
 	
 	public void setPlayerDao(PlayerDao playerDao){
 		this.playerDao = playerDao;
@@ -41,14 +44,20 @@ public class PlayerServiceImpl implements PlayersService {
 	}
 
 	@Override
-	public boolean assignPlayerToUser(int userID, int playerID) {
+	public boolean assignPlayerToUser(int userID, String playerID) {
 		
 		// Get player's object
-		// Check if player is not assigned
+		Player player = playerDao.getPlayer(playerID);
 		
-		// Get user's player selection
-		// Check player is not assigned to 
-
+		// Check if player is not assigned
+		if(player != null && player.getSelectedUserId() == UNASSIGNED_ID){
+			// Get user's player selection
+			UserSelection userSelection = userDao.getUserSelection(userID);
+			// TODO Check player is not assigned to user already
+			// Check type of player selected. 
+			// 
+			
+		}
 		return false;
 	}
 	

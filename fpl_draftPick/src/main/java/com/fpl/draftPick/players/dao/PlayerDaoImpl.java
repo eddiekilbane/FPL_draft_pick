@@ -28,9 +28,19 @@ public class PlayerDaoImpl implements PlayerDao {
 	}
 	
 	@Override
-	public Player getPlayer(int playerId) {
-		// TODO Auto-generated method stub
-		return null;
+	public Player getPlayer(String playerId) {
+		
+		String hql = "FROM Player"
+		+ " WHERE fpl_id='" + playerId+"'";
+		
+		Player player = (Player)getSessionFactory().getCurrentSession().createQuery(hql).uniqueResult();
+		
+		if(player ==null){
+			System.out.println("ERROR: Couldn't find player with id: " + playerId);
+			return null;
+		}
+		
+		return player;
 	}
 
 	public SessionFactory getSessionFactory() {

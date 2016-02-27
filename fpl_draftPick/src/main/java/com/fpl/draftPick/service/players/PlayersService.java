@@ -13,7 +13,7 @@ public interface PlayersService {
 	
 	boolean updateUser(User user);
 	
-	boolean assignPlayerToUser(int userID, int playerID);
+	boolean assignPlayerToUser(int userID, String playerID);
 	
 	
 

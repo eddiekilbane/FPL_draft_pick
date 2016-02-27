@@ -111,7 +111,7 @@ public class PlayerController {
 	public @ResponseBody void selectPlayerForUpdate(@RequestParam int userId, @RequestParam String playerID){
 		System.out.println("USER ID " + userId);
 		System.out.println("PLAYER ID " + playerID);
-		playerSevice.assignPlayerToUser(userId, Integer.parseInt(playerID));
+		playerSevice.assignPlayerToUser(userId, playerID);
 		
 		
 	}

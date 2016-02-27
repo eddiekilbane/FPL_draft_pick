@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.hibernate.SessionFactory;
 
+import com.fpl.draftPick.model.UserSelection;
 import com.fpl.draftPick.users.model.User;
 
 public class UserDaoImpl implements UserDao {
@@ -60,6 +61,11 @@ public class UserDaoImpl implements UserDao {
 
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
+	}
+
+	@Override
+	public UserSelection getUserSelection(int userId) {
+		return null;
 	}
 
 }
