@@ -95,8 +95,11 @@ $(document).ready(function(){
 		class="container-fluid text-center">
 
 		<div class="container row content">
-			<div class="col-sm-6">
+			<div class="col-sm-3">
 				<h1 id="usernameSelection"></h1>
+			</div>
+			<div class="col-sm-3">
+				<div id="currentUserSelection"></div>
 			</div>
 			<div class="col-sm-3">
 
@@ -124,7 +127,7 @@ $(document).ready(function(){
 			</div>
 			<div class="col-sm-4 sidenav">
 				<div class="well">
-					<p>Players Scorecard</p>
+					<p>Players Messenger</p>
 				</div>
 
 			</div>
