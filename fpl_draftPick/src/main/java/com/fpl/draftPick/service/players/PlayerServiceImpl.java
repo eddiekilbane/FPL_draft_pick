@@ -51,6 +51,7 @@ public class PlayerServiceImpl implements PlayersService {
 
 		if (player != null && player.getSelectedUserId() == UNASSIGNED_ID) {
 			UserSelection userSelection = userDao.getUserSelection(userID);
+			playerDao.assignPlayerToUser(userID, playerID);
 			return assignToUser(userSelection, player);
 		}
 		return false;

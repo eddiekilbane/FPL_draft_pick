@@ -77,7 +77,6 @@ public class UserDaoImpl implements UserDao {
 		String hql = "UPDATE UserSelection" + " SET " + playerCol + "_id = " + playerId 
 				+ " WHERE user_id=" + userId;
 		getSessionFactory().getCurrentSession().createQuery(hql).executeUpdate();
-
 		return true;
 	}
 

@@ -32,6 +32,8 @@ var DraftSelection = (function() {
 	};
 
 	return {
+		
+		oTable : null,
 		initDraftSelection : function() {
 			
 			DraftSelection._draftClock = $('.flipClock').FlipClock(120, {
@@ -46,8 +48,6 @@ var DraftSelection = (function() {
 			$.ajax({
 				type : 'POST',
 				url : ctx + '/fpldraftpick/getAllDraftPickUsers1',
-				/*contentType : 'application/json; charset=utf-8',
-			    data: JSON.stringify(users),*/
 				error : function(error) {
 					console.log("Error with Ajax call");
 					console.log(error);
@@ -88,33 +88,8 @@ var DraftSelection = (function() {
 						"info" : false
 					});*/
 
-			$('#userDraftOrderTable').DataTable(
-					{
-						"ajax" : {
-							type : 'POST',
-							url : ctx + '/fpldraftpick/getAllDraftPickUsers',
-							error : function() {
-								console.log("Error with Ajax call")
-							},
-							complete : function() {
-								console.log("COMPLETE");
-							}
-						},
-						"columns" : [ {
-							"title" : "Name",
-							"data" : "username"
-						}, {
-							"title" : "Order",
-							"data" : "draftOrder"
-						} ],
-						"filter" : false,
-						"processing" : false,
-						"deferRender" : false,
-						"paging" : false,
-						"info" : false
-					});
 
-			$('#playerDatatable').DataTable(
+			DraftSelection.oTable = $('#playerDatatable').DataTable(
 					{
 						"ajax" : {
 							type : 'POST',
@@ -159,9 +134,6 @@ var DraftSelection = (function() {
 						"paging" : true,
 						"info" : true
 					});
-			
-			
-			
 		},
 		
 		initButtonListeners : function() {
@@ -173,15 +145,25 @@ var DraftSelection = (function() {
 		},
 
 		renderPlayerSelectButton : function(data, type, row) {
-			return '<button id="'
-					+ row.playerId
-					+ ' " type="button" class="btn btn-primary"'
-					+' onClick="DraftSelection.selectPlayer('+row.playerId+');">Select</button>'
+			// If player selected change button colour and do not allow it to be selected.
+			if(row.assignedUserId === 0){
+				return '<button id="'
+				+ row.playerId
+				+ ' " type="button" class="btn btn-primary"'
+				+' onClick="DraftSelection.selectPlayer('+row.playerId+');">Select</button>';
+			}else{
+				return '<button id="'
+				+ row.playerId
+				+ ' " type="button" class="btn btn-default"'
+				+' onClick="DraftSelection.playerAlreadySelected('+row.firstName+','+row.firstName+','+row.assignedUserId+');">Selected</button>';
+			}	
+		},
+		
+		playerAlreadySelected : function(firstName, secondName, userId ){
+			console.log("Sorry: " + firstName + " " + secondName + " selected by: " + userId);
 		},
 		
 		selectPlayer : function(player){
-			console.log(player);
-			//TODO Ajax call to assign player to current user
 			$.ajax({
 				type : 'POST',
 				url : ctx + '/fpldraftpick/selectPlayerForUpdate',
@@ -196,9 +178,7 @@ var DraftSelection = (function() {
 				success : function(response) {
 					console.log("Successfully updated Users player selection");
 					displayUsernameSelction();
-					
-					
-
+					DraftSelection.oTable.ajax.reload();
 				}
 			});			
 		}

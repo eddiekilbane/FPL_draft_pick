@@ -13,5 +13,7 @@ public interface PlayerDao {
 	
 	Player getPlayerByUserName();
 	
+	void assignPlayerToUser(int userID, String playerID);
+	
 
 }
