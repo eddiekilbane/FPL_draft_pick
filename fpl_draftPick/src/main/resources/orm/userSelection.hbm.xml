@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+   <class name="com.fpl.draftPick.model.UserSelection" table="user_draft_selection" catalog="fplDraftPickDB">
+
+		<id name="userId" type="int" column="user_id">
+			<generator class="native" />
+		</id>
+		<property name="gk1" type="int">
+			<column name="gk_1_id" />
+		</property>
+		<property name="gk2" type="int">
+			<column name="gk_2_id" />
+		</property>
+		<property name="def1" type="int">
+			<column name="def_1_id" />
+		</property>
+		<property name="def2" type="int">
+			<column name="def_2_id" />
+		</property>
+		<property name="def3" type="int">
+			<column name="def_3_id" />
+		</property>
+		<property name="def4" type="int">
+			<column name="def_4_id" />
+		</property>
+		<property name="mid1" type="int">
+			<column name="mid_1_id" />
+		</property>
+		<property name="mid2" type="int">
+			<column name="mid_2_id" />
+		</property>
+		<property name="mid3" type="int">
+			<column name="mid_3_id" />
+		</property>
+		<property name="mid4" type="int">
+			<column name="mid_4_id" />
+		</property>
+		<property name="mid5" type="int">
+			<column name="mid_5_id" />
+		</property>
+		<property name="str1" type="int">
+			<column name="str_1_id" />
+		</property>
+		<property name="str2" type="int">
+			<column name="str_2_id" />
+		</property>
+		<property name="str3" type="int">
+			<column name="str_3_id" />
+		</property>
+		<property name="str4" type="int">
+			<column name="str_4_id" />
+		</property>
+		
+	</class>
+</hibernate-mapping>

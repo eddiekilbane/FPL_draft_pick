@@ -17,8 +17,7 @@ public class UserDaoImpl implements UserDao {
 
 		List<User> users = new ArrayList<User>();
 
-		users = getSessionFactory().getCurrentSession()
-				.createQuery("from User where username=?")
+		users = getSessionFactory().getCurrentSession().createQuery("from User where username=?")
 				.setParameter(0, username).list();
 
 		if (users.size() > 0) {
@@ -34,8 +33,7 @@ public class UserDaoImpl implements UserDao {
 
 		List<User> users = new ArrayList<User>();
 
-		users = getSessionFactory().getCurrentSession()
-				.createCriteria(User.class).list();
+		users = getSessionFactory().getCurrentSession().createCriteria(User.class).list();
 
 		if (users.size() > 0) {
 			return users;
@@ -47,11 +45,11 @@ public class UserDaoImpl implements UserDao {
 	@Override
 	public boolean updateUser(User user) {
 
-		String hql = "UPDATE User set draft_order =" + user.getDraftOrder()
-				+ " WHERE username ='" + user.getUsername()+"'";
+		String hql = "UPDATE User set draft_order =" + user.getDraftOrder() + " WHERE username ='" + user.getUsername()
+				+ "'";
 
 		getSessionFactory().getCurrentSession().createQuery(hql).executeUpdate();
-		
+
 		return true;
 	}
 
@@ -65,7 +63,22 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	public UserSelection getUserSelection(int userId) {
+		String hql = "FROM UserSelection WHERE user_id=" + userId;
+		UserSelection selection = (UserSelection) getSessionFactory().getCurrentSession().createQuery(hql)
+				.uniqueResult();
+		if (selection != null) {
+			return selection;
+		}
 		return null;
+	}
+
+	@Override
+	public boolean updateUserSelection(int userId, int playerId, String playerCol) {
+		String hql = "UPDATE UserSelection" + " SET " + playerCol + "_id = " + playerId 
+				+ " WHERE user_id=" + userId;
+		getSessionFactory().getCurrentSession().createQuery(hql).executeUpdate();
+
+		return true;
 	}
 
 }

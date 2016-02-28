@@ -14,5 +14,7 @@ public interface UserDao {
 	boolean updateUser(User user);
 	
 	UserSelection getUserSelection(int userId);
+	
+	boolean updateUserSelection(int userId, int playerId, String playerCol);
 
 }

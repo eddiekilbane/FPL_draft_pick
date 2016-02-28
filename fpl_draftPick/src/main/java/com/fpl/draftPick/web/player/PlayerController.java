@@ -25,12 +25,12 @@ import com.fpl.draftPick.users.model.User;
 public class PlayerController {
 
 	@Autowired
-	private PlayersService playerSevice;
+	private PlayersService playerService;
 	
 	@RequestMapping(value = "/fpldraftpick/getAllPlayers", method=RequestMethod.POST, produces="application/json")
 	public @ResponseBody Map<String, Object> allFPLPlayers(){
 		
-		List<Player> allPlayers = playerSevice.getAllPlayers();
+		List<Player> allPlayers = playerService.getAllPlayers();
 		
 		List<PlayerDTO> allPlayerDTOList = new ArrayList<PlayerDTO>();
 		
@@ -54,7 +54,7 @@ public class PlayerController {
 	@RequestMapping(value = "/fpldraftpick/getAllDraftPickUsers", method=RequestMethod.POST, produces="application/json")
 	public @ResponseBody Map<String, Object> allFPLDraftPickUsers(){
 
-		List<User> allDraftPickUsers = playerSevice.getAllDraftPickUsers();
+		List<User> allDraftPickUsers = playerService.getAllDraftPickUsers();
 		
 		List<UserDTO> allDraftPickUsersDTOList = new ArrayList<UserDTO>();
 		
@@ -75,7 +75,7 @@ public class PlayerController {
 	@RequestMapping(value = "/fpldraftpick/getAllDraftPickUsers1", method=RequestMethod.POST, produces="application/json")
 	public @ResponseBody List<UserDTO> allFPLDraftPickUsers1(){
 
-		List<User> allDraftPickUsers = playerSevice.getAllDraftPickUsers();
+		List<User> allDraftPickUsers = playerService.getAllDraftPickUsers();
 		
 		List<UserDTO> allDraftPickUsersDTOList = new ArrayList<UserDTO>();
 		
@@ -100,7 +100,7 @@ public class PlayerController {
 	public @ResponseBody void updateDraftPickOrder(@RequestBody User[] users){
 		
 		for(User user : users){
-			playerSevice.updateUser(user);
+			playerService.updateUser(user);
 		}	
 	}
 	
@@ -111,7 +111,7 @@ public class PlayerController {
 	public @ResponseBody void selectPlayerForUpdate(@RequestParam int userId, @RequestParam String playerID){
 		System.out.println("USER ID " + userId);
 		System.out.println("PLAYER ID " + playerID);
-		playerSevice.assignPlayerToUser(userId, playerID);
+		playerService.assignPlayerToUser(userId, playerID);
 		
 		
 	}

@@ -30,6 +30,7 @@
 				<value>orm/player.hbm.xml</value>
 				<value>orm/club.hbm.xml</value>
 				<value>orm/playerType.hbm.xml</value>
+				<value>orm/userSelection.hbm.xml</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">
@@ -55,7 +56,7 @@
 		<property name="userDao" ref="userDao" />
 	</bean>
 	
-	<bean id="playerSevice" 
+	<bean id="playerService" 
                 class="com.fpl.draftPick.service.players.PlayerServiceImpl">
 		<property name="playerDao" ref="playerDao" />
 		<property name="userDao" ref="userDao" />
