@@ -27,24 +27,20 @@ public class PlayerServiceImpl implements PlayersService {
 		this.userDao = userDao;
 	}
 
-	@Override
 	@Transactional
 	public List<Player> getAllPlayers() {
 		return playerDao.getAllPlayers();
 	}
 
-	@Override
 	@Transactional
 	public List<User> getAllDraftPickUsers() {
 		return userDao.getDraftpickUsers();
 	}
 
-	@Override
 	public boolean updateUser(User user) {
 		return userDao.updateUser(user);
 	}
 
-	@Override
 	public boolean assignPlayerToUser(int userID, String playerID) {
 
 		Player player = playerDao.getPlayer(playerID);

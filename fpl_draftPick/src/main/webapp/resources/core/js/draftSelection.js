@@ -12,6 +12,8 @@ var DraftSelection = (function() {
 	_draftUserPick : 0;
 	_draftUserOrder : [];
 	_currentUser : 0;
+	_currentUserName : "";
+	_loggedInUser : "";
 
 	var displayUsernameSelction = function(){
 		console.log(_draftUserOrder[0].draftOrder);
@@ -21,6 +23,7 @@ var DraftSelection = (function() {
 			if(_draftUserOrder[i].draftOrder === _draftUserPick){
 				$('#usernameSelection').html(_draftUserOrder[i].username + "'s pick");
 				_currentUser = _draftUserOrder[i].userId;
+				_currentUserName = _draftUserOrder[i].username;
 			}
 			
 		}
@@ -34,7 +37,9 @@ var DraftSelection = (function() {
 	return {
 		
 		oTable : null,
-		initDraftSelection : function() {
+		initDraftSelection : function(temp) {
+			
+			_loggedInUser = temp;
 			
 			DraftSelection._draftClock = $('.flipClock').FlipClock(120, {
 				clockFace : 'MinuteCounter',
@@ -146,17 +151,25 @@ var DraftSelection = (function() {
 
 		renderPlayerSelectButton : function(data, type, row) {
 			// If player selected change button colour and do not allow it to be selected.
-			if(row.assignedUserId === 0){
-				return '<button id="'
-				+ row.playerId
-				+ ' " type="button" class="btn btn-primary"'
-				+' onClick="DraftSelection.selectPlayer('+row.playerId+');">Select</button>';
+			if(_loggedInUser === _currentUserName){
+				if(row.assignedUserId === 0){
+					return '<button id="'
+					+ row.playerId
+					+ ' " type="button" class="btn btn-primary"'
+					+' onClick="DraftSelection.selectPlayer('+row.playerId+');">Select</button>';
+				}else{
+					return '<button id="'
+					+ row.playerId
+					+ ' " type="button" class="btn btn-default"'
+					+' onClick="DraftSelection.playerAlreadySelected('+row.firstName+','+row.firstName+','+row.assignedUserId+');">Selected</button>';
+				}	
 			}else{
 				return '<button id="'
 				+ row.playerId
-				+ ' " type="button" class="btn btn-default"'
-				+' onClick="DraftSelection.playerAlreadySelected('+row.firstName+','+row.firstName+','+row.assignedUserId+');">Selected</button>';
-			}	
+				+ ' " type="button" class="btn btn-primary disabled"'
+				+' >Select</button>'; 
+			}
+			
 		},
 		
 		playerAlreadySelected : function(firstName, secondName, userId ){

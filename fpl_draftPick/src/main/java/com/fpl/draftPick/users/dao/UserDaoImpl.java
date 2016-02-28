@@ -42,7 +42,6 @@ public class UserDaoImpl implements UserDao {
 		}
 	}
 
-	@Override
 	public boolean updateUser(User user) {
 
 		String hql = "UPDATE User set draft_order =" + user.getDraftOrder() + " WHERE username ='" + user.getUsername()
@@ -61,7 +60,6 @@ public class UserDaoImpl implements UserDao {
 		this.sessionFactory = sessionFactory;
 	}
 
-	@Override
 	public UserSelection getUserSelection(int userId) {
 		String hql = "FROM UserSelection WHERE user_id=" + userId;
 		UserSelection selection = (UserSelection) getSessionFactory().getCurrentSession().createQuery(hql)
@@ -72,7 +70,6 @@ public class UserDaoImpl implements UserDao {
 		return null;
 	}
 
-	@Override
 	public boolean updateUserSelection(int userId, int playerId, String playerCol) {
 		String hql = "UPDATE UserSelection" + " SET " + playerCol + "_id = " + playerId 
 				+ " WHERE user_id=" + userId;

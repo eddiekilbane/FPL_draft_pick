@@ -34,7 +34,6 @@ public class PlayerDaoImpl implements PlayerDao {
 		return null;
 	}
 
-	@Override
 	public Player getPlayer(String playerId) {
 
 		String hql = "FROM Player" + " WHERE fpl_id='" + playerId + "'";
@@ -49,7 +48,6 @@ public class PlayerDaoImpl implements PlayerDao {
 		return player;
 	}
 
-	@Override
 	public void assignPlayerToUser(int userID, String playerID) {
 
 		String hql = "UPDATE Player SET selected_user_id=" + userID + " WHERE fpl_id='" + playerID + "'";

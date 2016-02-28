@@ -16,6 +16,12 @@
 	var="jqueryJs" />
 <spring:url value="/resources/core/js/draftSelection.js"
 	var="draftSelectionJs" />
+<spring:url value="/resources/core/js/stompClient.js"
+	var="stompClientJs" />
+	<spring:url value="/resources/core/js/stomp.js"
+	var="stompJs" />
+	<spring:url value="/resources/core/js/sockjs-0.3.4.js"
+	var="sockJs" />
 <spring:url value="/resources/core/js/flipclock.min.js"
 	var="flipClockJs" />
 
@@ -24,6 +30,9 @@
 <link href="${flipClockCss}" rel="stylesheet" />
 <script src="${jqueryJs}"></script>
 <script src="${draftSelectionJs}"></script>
+<script src="${stompClientJs}"></script>
+<script src="${stompJs}"></script>
+<script src="${sockJs}"></script>
 <script src="${flipClockJs}"></script>
 
 <link rel="stylesheet" type="text/css"
@@ -35,7 +44,22 @@
 <script type="text/javascript">
 var ctx = "${pageContext.request.contextPath}";
 $(document).ready(function(){
-	DraftSelection.initDraftSelection();
+	var temp = "${pageContext.request.userPrincipal.name}";
+	//StompClient.initStompClient();
+	socket = new SockJS('/fpl_draftPick/messenger');
+			stompClient = Stomp.over(socket);
+			console.log("Init stomp client");
+			console.log(socket);
+			console.log(stompClient);
+			stompClient.connect({}, function(frame) {
+				setConnected(true);
+				console.log('Connected: ' + frame);
+				stompClient.subscribe('/topic/greetings', function(greeting) {
+					showGreeting(JSON.parse(greeting.body).content);
+				});
+			});
+	
+	DraftSelection.initDraftSelection(temp);
 });
 
 </script>
@@ -128,8 +152,13 @@ $(document).ready(function(){
 			<div class="col-sm-4 sidenav">
 				<div class="well">
 					<p>Players Messenger</p>
-				</div>
 
+					<div id="conversationDiv">
+						<label>Message:</label><input type="text" id="name" />
+						<button id="sendName" onclick="StompClient.sendName();">Send</button>
+						<p id="response"></p>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
